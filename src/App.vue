@@ -6,7 +6,11 @@
 
 <script>
 import FormCreate from './components/FormCreate.vue'
-
+class Form {
+  inputNumber = 2
+  radio = 4
+  checkbox = [3]
+}
 export default {
   name: 'App',
   components: {
@@ -14,7 +18,7 @@ export default {
   },
   data() {
     return {
-      vModel: { inputNumber: 2, radio: 4, checkbox: [3] },
+      vModel: new Form(),
       config: [
         {
           comp: 'input',
@@ -43,7 +47,6 @@ export default {
             }
           }
         },
-
         {
           comp: 'input-number',
           label: '计数框',
@@ -204,10 +207,18 @@ export default {
         },
         {
           comp: 'button',
-          buttonText: 'console',
+          buttonText: '控制台',
           attributes: {},
           callback: () => {
             console.log(this.vModel)
+          }
+        },
+        {
+          comp: 'button',
+          buttonText: '重置',
+          attributes: { type: 'primary' },
+          callback: () => {
+            this.vModel = new Form()
           }
         }
       ]
